@@ -14,7 +14,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: false
       - name: Verify and extract application source
         run: |
           test -s ai-code-mentor.zip
