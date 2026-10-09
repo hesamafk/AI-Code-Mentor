@@ -1,1 +1,0 @@
-GitHub connector write test. Temporary file created to verify branch write access.
