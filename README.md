@@ -30,3 +30,7 @@ React 18 · Vite · CSS · OpenAI API · react-markdown · react-syntax-highligh
 
 ## Author
 Hesam Afkhami · [LinkedIn](https://www.linkedin.com/in/hesam-afkhami)
+
+
+## Quality checks
+GitHub Actions verifies that the source archive is present and readable and checks that the repository does not contain obvious OpenAI API-key strings. These checks do not replace extracting the source, reviewing its implementation, and building/testing the application.
