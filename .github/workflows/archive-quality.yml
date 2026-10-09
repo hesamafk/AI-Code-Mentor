@@ -1,0 +1,21 @@
+name: Archive integrity
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify source archive
+        run: |
+          test -s ai-code-mentor.zip
+          unzip -t ai-code-mentor.zip
+      - name: Check security documentation and environment template
+        run: |
+          test -s SECURITY.md
+          test -s .env.example
+          ! grep -R --exclude='*.zip' --exclude-dir='.git' -nE 'sk-[A-Za-z0-9_-]{20,}' .
