@@ -1,0 +1,33 @@
+name: Verify actual app build
+on:
+  push:
+    branches: [main, verify-real-build]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  archive-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: false
+      - name: Verify and extract application source
+        run: |
+          test -s ai-code-mentor.zip
+          mkdir -p /tmp/ai-code-mentor
+          unzip -q ai-code-mentor.zip -d /tmp/ai-code-mentor
+          PROJECT_DIR="$(find /tmp/ai-code-mentor -type f -name package.json -not -path '*/node_modules/*' -print -quit | xargs -r dirname)"
+          test -n "$PROJECT_DIR"
+          test -s "$PROJECT_DIR/src/App.jsx"
+          test -s "$PROJECT_DIR/src/main.jsx"
+          echo "PROJECT_DIR=$PROJECT_DIR" >> "$GITHUB_ENV"
+      - name: Install dependencies
+        working-directory: ${{ env.PROJECT_DIR }}
+        run: npm install --no-audit --no-fund
+      - name: Build production bundle
+        working-directory: ${{ env.PROJECT_DIR }}
+        run: npm run build
