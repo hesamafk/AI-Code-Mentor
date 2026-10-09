@@ -30,3 +30,14 @@ Run `npm run build` inside the extracted app folder. GitHub Actions also extract
 ## License
 
 MIT
+
+
+## CS50 learning resources
+
+No personal CS50 assignment repository was available when this project was checked, so this section links to official public course materials rather than claiming that assignments have been imported.
+
+- CS50x course and lectures: https://cs50.harvard.edu/x/
+- Official CS50 source-code organization: https://github.com/cs50
+- CS50x problem sets and submission instructions: follow the current course site and its academic-honesty policy.
+
+These are resource links only; no CS50 assignments or solutions are bundled into this repository.
